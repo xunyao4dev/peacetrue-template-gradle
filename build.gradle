@@ -19,27 +19,7 @@ subprojects { project ->
     dependencyManagement {
         imports {
             mavenBom "org.springframework.boot:spring-boot-dependencies:1.5.20.RELEASE"
-        }
-
-        dependencies {
-            dependency "com.google.code.findbugs:jsr305:1.3.9"
-            dependency "org.projectlombok:lombok:1.18.6"
-            dependency "io.github.benas:random-beans:3.7.0"
-            dependency "org.unitils:unitils-core:3.4.2"
-            dependency "mysql:mysql-connector-java:5.1.39"
-            dependency "com.h2database:h2:1.4.196"
-            dependency "org.mybatis:mybatis:3.4.6"
-            dependency "org.mybatis:mybatis-spring:1.3.0"
-            dependency "org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2"
-            dependency "org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.2"
-            dependency "com.github.pagehelper:pagehelper:5.1.2"
-            dependency "com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3"
-            dependency "org.aspectj:aspectjweaver:1.9.0"
-            dependency 'com.github.peacetrue:peacetrue-core:1.0-SNAPSHOT'
-            dependency 'com.github.peacetrue:peacetrue-result:1.0-SNAPSHOT'
-            dependency 'com.github.peacetrue:spring-data-commons-page:1.0-RELEASE'
-            dependency 'com.github.peacetrue:peacetrue-validation:1.0-SNAPSHOT'
-            dependency 'javax.validation:validation-api:1.1.0.Final'
+            mavenBom "com.github.peacetrue:peacetrue-dependencies:1.0-SNAPSHOT"
         }
     }
 
@@ -59,6 +39,7 @@ subprojects { project ->
         testImplementation "junit:junit"
         testCompileOnly "org.projectlombok:lombok"
         testAnnotationProcessor "org.projectlombok:lombok"
+        testImplementation "ch.qos.logback:logback-classic"
     }
 
     if (name.endsWith("sample") || name.endsWith("ui")) return;
