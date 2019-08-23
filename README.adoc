@@ -1,4 +1,4 @@
-= Gradle模板结构
+= Gradle项目模板
 xiayx <xiayouxue@hotmail.com>
 v1.0, 2019-08-23: SNAPSHOT
 :doctype: docbook
