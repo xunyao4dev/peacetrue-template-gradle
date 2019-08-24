@@ -19,3 +19,4 @@ v1.0, 2019-08-23: SNAPSHOT
 * 在本地配置 ossrhUsername 和 ossrhPassword 后，可以发布代码到 maven-central
 * 一个``com.github.peacetrue.Placeholder``的空类
 * 一个``docs/README.graffle``的设计图表
+* 一个符合 https://antora.org[antora^] 要求的文档结构
