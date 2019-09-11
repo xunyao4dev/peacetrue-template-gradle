@@ -3,7 +3,7 @@
 site:
   title: 真实安宁
   url: https://peacetrue.github.io
-  start_page: peacetrue-template-gradle::introduction.adoc
+  start_page: peacetrue-template-gradle::index.adoc
 content:
   branches: master
   sources:
