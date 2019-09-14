@@ -1,3 +1,4 @@
+# cd docs/antora
 # antora generate --clean playbook.yml
 # antora generate playbook.yml
 site:
