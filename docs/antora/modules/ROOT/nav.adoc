@@ -1,1 +1,1 @@
-* xref:index.adoc[index]
+* xref:index.adoc[简介]
