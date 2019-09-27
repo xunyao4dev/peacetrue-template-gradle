@@ -4,7 +4,6 @@ plugins {
     id("idea")
     id("java-library")
     id("io.spring.dependency-management") version "1.0.6.RELEASE"
-    id("org.jetbrains.kotlin.jvm") version "1.3.50"
 //    id("org.springframework.boot") version "2.1.8.RELEASE"
 }
 
@@ -16,11 +15,21 @@ allprojects {
 
     apply(plugin = "java")
     apply(plugin = "java-library")
-    apply(plugin = "io.spring.dependency-management")
 
     java {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    apply(plugin = "idea")
+    idea {
+        module {
+            inheritOutputDirs = false
+            outputDir = tasks.compileJava.get().destinationDir
+            testOutputDir = tasks.compileTestJava.get().destinationDir
+            isDownloadSources = true
+            isDownloadJavadoc = false
+        }
     }
 
     repositories {
@@ -29,6 +38,7 @@ allprojects {
         maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
     }
 
+    apply(plugin = "io.spring.dependency-management")
     dependencyManagement {
         imports {
             mavenBom("org.springframework.boot:spring-boot-dependencies:2.1.8.RELEASE")
@@ -40,13 +50,14 @@ allprojects {
         compileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
         implementation("com.google.code.findbugs:jsr305")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib")
 
         testImplementation("junit:junit")
         testCompileOnly("org.projectlombok:lombok")
         testAnnotationProcessor("org.projectlombok:lombok")
         testImplementation("ch.qos.logback:logback-classic")
     }
+
+
 
     tasks.register("antoraCopySourceToExample") {
         doLast {
