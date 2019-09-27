@@ -11,6 +11,8 @@ v1.0, 2019-08-23: SNAPSHOT
 :source-highlighter: highlightjs
 
 一个基于Gradle的项目模板。
+
+== V1.0.0-SNAPSHOT
 包含以下内容：
 
 * 基于 gradle-5.4.1 的环境
@@ -20,3 +22,4 @@ v1.0, 2019-08-23: SNAPSHOT
 * 一个``com.github.peacetrue.Placeholder``的空类
 * 一个``docs/README.graffle``的设计图表
 * 一个符合 https://antora.org[antora^] 要求的文档结构
+
