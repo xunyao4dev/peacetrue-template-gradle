@@ -14,7 +14,7 @@ allprojects { project ->
 
     apply plugin: "java"
     apply plugin: "java-library"
-    sourceCompatibility = 11
+    sourceCompatibility = 8
     targetCompatibility = 8
 
     apply plugin: "idea"
