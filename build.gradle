@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
-    id("org.springframework.boot") version "1.5.20.RELEASE" apply(false)
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+//    id("org.springframework.boot") version "1.5.20.RELEASE" apply(false)
     id("maven-publish")
     id("signing")
     id("idea")
@@ -60,17 +61,13 @@ allprojects { project ->
                 delete(path)
             }
             copy {
-                from sourceSets.main.allSource
-                into(path)
+                from sourceSets.main.allSource into(path)
             }
             copy {
-                from sourceSets.test.allSource
-                into(path)
+                from sourceSets.test.allSource into(path)
             }
         }
     }
-
-    if (name.endsWith("sample") || name.endsWith("ui")) return
 
     task sourcesJar(type: Jar) {
         archiveClassifier = "sources"
