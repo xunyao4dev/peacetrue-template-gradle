@@ -39,7 +39,9 @@ allprojects { project ->
     dependencyManagement {
         imports {
             mavenBom "org.springframework.boot:spring-boot-dependencies:1.5.20.RELEASE"
+//            mavenBom "org.springframework.boot:spring-boot-dependencies:2.1.8.RELEASE"
             mavenBom "com.github.peacetrue:peacetrue-dependencies:1.0.4-SNAPSHOT"
+//            mavenBom "com.github.peacetrue:peacetrue-dependencies:2.0.0-SNAPSHOT"
         }
     }
 
