@@ -3,5 +3,5 @@ package com.github.peacetrue;
 /**
  * @author xiayx
  */
-public class AutoConfiguration {
+public class Placeholder {
 }
