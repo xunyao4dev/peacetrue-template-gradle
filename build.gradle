@@ -10,7 +10,7 @@ plugins {
 allprojects { project ->
 
     group "com.github.peacetrue.template"
-    version "1.0-SNAPSHOT"
+    version "1.0.0-SNAPSHOT"
     description "gradle模板"
 
     apply plugin: "java"
@@ -71,68 +71,82 @@ allprojects { project ->
         }
     }
 
-    task sourcesJar(type: Jar) {
-        archiveClassifier = "sources"
-        from sourceSets.main.allJava
-    }
+    if (gradle.hasProperty('ossrhUsername')) {
 
-    task javadocJar(type: Jar) {
-        archiveClassifier = "javadoc"
-        from javadoc.destinationDir
-    }
+        java {
+            withJavadocJar()
+            withSourcesJar()
+        }
 
-    def repository_snapshots = "https://oss.sonatype.org/content/repositories/snapshots/"
-    def repository_releases = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        def repository_snapshots = "https://oss.sonatype.org/content/repositories/snapshots/"
+        def repository_releases = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
 
-    apply plugin: "maven-publish"
-    apply plugin: "signing"
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                pom {
-                    name = project.name
-                    description = project.description
-                    url = "https://github.com/peacetrue/${project.name}"
-                    licenses {
-                        license {
-                            name = "The Apache License, Version 2.0"
-                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        apply plugin: "maven-publish"
+        apply plugin: "signing"
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+
+                    artifactId = project.name
+                    from components.java
+                    versionMapping {
+                        usage('java-api') {
+                            fromResolutionOf('runtimeClasspath')
+                        }
+                        usage('java-runtime') {
+                            fromResolutionResult()
                         }
                     }
-                    developers {
-                        developer {
-                            id = "xiayouxue"
-                            name = "xiayouxue"
-                            email = "xiayouxue@hotmail.com"
+
+                    pom {
+                        name = project.name
+                        description = project.description
+                        url = "https://github.com/peacetrue/${project.name}"
+                        licenses {
+                            license {
+                                name = "The Apache License, Version 2.0"
+                                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                            }
                         }
-                    }
-                    scm {
-                        connection = "https://github.com/peacetrue/${project.name}.git"
-                        developerConnection = "https://github.com/peacetrue/${project.name}.git"
-                        url = "https://github.com/peacetrue/peacetrue/${project.name}"
+                        developers {
+                            developer {
+                                id = "xiayouxue"
+                                name = "xiayouxue"
+                                email = "xiayouxue@hotmail.com"
+                            }
+                        }
+                        scm {
+                            connection = "https://github.com/peacetrue/${project.name}.git"
+                            developerConnection = "https://github.com/peacetrue/${project.name}.git"
+                            url = "https://github.com/peacetrue/peacetrue/${project.name}"
+                        }
                     }
                 }
+            }
 
-                from components.java
+            repositories {
+                maven {
+                    url version.endsWith("SNAPSHOT") ? repository_snapshots : repository_releases
+                    credentials {
 
-                artifact sourcesJar
-                artifact javadocJar
+                        username = ossrhUsername
+                        password = ossrhPassword
+                    }
+                }
             }
         }
 
-        repositories {
-            maven {
-                url version.endsWith("SNAPSHOT") ? repository_snapshots : repository_releases
-                credentials {
-                    username = ossrhUsername
-                    password = ossrhPassword
-                }
+        if (!version.endsWith("SNAPSHOT")) {
+            signing {
+                sign publishing.publications.mavenJava
             }
         }
-    }
 
-    signing {
-        sign publishing.publications.mavenJava
+        javadoc {
+            if (JavaVersion.current().isJava9Compatible()) {
+                options.addBooleanOption('html5', true)
+            }
+        }
     }
 
 }
