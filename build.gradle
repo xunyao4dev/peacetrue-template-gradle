@@ -1,7 +1,6 @@
 plugins {
     id("java-library")
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
-//    id("org.springframework.boot") version "1.5.20.RELEASE" apply(false)
 }
 
 allprojects { project ->
@@ -12,8 +11,8 @@ allprojects { project ->
 
     apply plugin: "java"
     apply plugin: "java-library"
-    sourceCompatibility = 8
-    targetCompatibility = 8
+//    sourceCompatibility = 8
+//    targetCompatibility = 8
 
     repositories {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
@@ -24,10 +23,10 @@ allprojects { project ->
     apply plugin: "io.spring.dependency-management"
     dependencyManagement {
         imports {
-            mavenBom "org.springframework.boot:spring-boot-dependencies:1.5.20.RELEASE"
-//            mavenBom "org.springframework.boot:spring-boot-dependencies:2.1.8.RELEASE"
-            mavenBom "com.github.peacetrue:peacetrue-dependencies:1.0.4-SNAPSHOT"
-//            mavenBom "com.github.peacetrue:peacetrue-dependencies:2.0.0-SNAPSHOT"
+//            mavenBom "org.springframework.boot:spring-boot-dependencies:1.5.20.RELEASE"
+//            mavenBom "com.github.peacetrue:peacetrue-dependencies:1.0.4-SNAPSHOT"
+            mavenBom "org.springframework.boot:spring-boot-dependencies:2.2.5.RELEASE"
+            mavenBom "com.github.peacetrue:peacetrue-dependencies:2.0.0-SNAPSHOT"
         }
     }
 
