@@ -10,4 +10,4 @@ v1.0, 2019-08-23: SNAPSHOT
 :testsourcedir: src/test/java
 :source-highlighter: highlightjs
 
-查看 http://peacetrue.github.io/public/peacetrue-template-gradle/index.html[详情^]
+详情参考 https://peacetrue.cn/summarize/peacetrue-template-gradle/index.html[安宁的博客^]。
