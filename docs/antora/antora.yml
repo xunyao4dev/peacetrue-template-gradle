@@ -3,7 +3,7 @@ title: gradle 模板项目
 version: master
 asciidoc:
   attributes:
-    numbered: ''
+    numbered: '@'
 start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
